@@ -2,7 +2,13 @@
             "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
 <beans>
-
 	<!-- add your bean definitions here! -->
 	<bean id="customerManagementService" class="se.yrgo.crm.services.customers.CustomerManagementMockImpl"/>
+
+	<bean id="diaryManagementService" class="se.yrgo.crm.services.diary.DiaryManagementServiceMockImpl"/>
+
+	<bean id="callHandlingService" class="se.yrgo.crm.services.calls.CallHandlingServiceImpl">
+			<constructor-arg ref="customerManagementService"/>
+			<constructor-arg ref="diaryManagementService"/>
+	</bean>
 </beans>
