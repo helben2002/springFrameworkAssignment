@@ -24,11 +24,7 @@ public class SimpleClient {
         CallHandlingService callService = container.getBean(CallHandlingService.class);
         DiaryManagementService diaryService = container.getBean(DiaryManagementService.class);
 
-        try {
-            customerService.newCustomer(new Customer("CS03939", "Acme", "Good Customer"));
-        }catch (CustomerNotFoundException e){
-            System.out.println("That customer doesn't exist");
-        }
+        customerService.newCustomer(new Customer("CS03939", "Acme", "Good Customer"));
 
         Call newCall = new Call("Larry Wall called from Acme Corp");
         Action action1 = new Action("Call back Larry to ask how things are going", new GregorianCalendar(2016, 0, 0), "rac");
