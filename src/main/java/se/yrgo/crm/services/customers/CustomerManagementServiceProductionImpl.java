@@ -1,5 +1,6 @@
 package se.yrgo.crm.services.customers;
 
+import org.springframework.transaction.annotation.Transactional;
 import se.yrgo.crm.dataaccess.CustomerDao;
 import se.yrgo.crm.dataaccess.RecordNotFoundException;
 import se.yrgo.crm.domain.Call;
@@ -7,6 +8,7 @@ import se.yrgo.crm.domain.Customer;
 
 import java.util.List;
 
+@Transactional
 public class CustomerManagementServiceProductionImpl implements CustomerManagementService {
     CustomerDao customerDao;
 
