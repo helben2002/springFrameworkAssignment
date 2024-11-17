@@ -1,5 +1,7 @@
 package se.yrgo.crm.services.diary;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import se.yrgo.crm.domain.Action;
 import se.yrgo.crm.services.calls.CallHandlingService;
 
@@ -8,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Service
+@Transactional
 public class DiaryManagementServiceMockImpl implements DiaryManagementService {
     CallHandlingService callHandlingService;
 
