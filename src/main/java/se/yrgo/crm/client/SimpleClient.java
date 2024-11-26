@@ -18,7 +18,7 @@ import se.yrgo.crm.services.diary.DiaryManagementService;
 public class SimpleClient {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("application.xml");
+        ClassPathXmlApplicationContext container = new ClassPathXmlApplicationContext("production-application.xml");
 
         CustomerManagementService customerService = container.getBean("customerManagement", CustomerManagementService.class);
         CallHandlingService callService = container.getBean(CallHandlingService.class);
