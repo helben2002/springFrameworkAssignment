@@ -19,17 +19,31 @@ public class ActionDaoJpaImpl implements ActionDao {
 
     @Override
     public List<Action> getIncompleteActions(String userId) {
-        return em.createQuery("select action from Action as action where action.userId=:userId AND action.complete=:false" , Action.class).getResultList();
+        return em.createQuery("select action from Action as action where " +
+                "action.owningUser=:userId AND action.complete = false" ,
+                Action.class).setParameter("userId", userId).getResultList();
     }
 
     @Override
     public void update(Action actionToUpdate) throws RecordNotFoundException {
-        //TODO
+        Action action = em.find(Action.class, actionToUpdate.getActionId());
+
+        if (action == null) {
+            throw new RecordNotFoundException();
+        }
+
+        action.setDetails(actionToUpdate.getDetails());
+        action.setOwningUser(actionToUpdate.getOwningUser());
+        action.setRequiredBy(actionToUpdate.getRequiredBy());
     }
 
     @Override
     public void delete(Action oldAction) throws RecordNotFoundException {
-        Action actionToDelete = em.find(Action.class, oldAction.getActionId());
-        em.remove(actionToDelete);
+        try {
+            Action actionToDelete = em.find(Action.class, oldAction.getActionId());
+            em.remove(actionToDelete);
+        }catch (javax.persistence.NoResultException e) {
+            throw new RecordNotFoundException();
+        }
     }
 }
